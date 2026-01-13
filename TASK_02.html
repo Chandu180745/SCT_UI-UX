@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global Daily - News App</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Merriweather', 'serif'],
+                    },
+                    colors: {
+                        newsBlue: {
+                            light: '#1d4ed8',
+                            dark: '#60a5fa', 
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Global Smooth Transitions */
+        body, header, div, p, span, h1, h2, h3, blockquote, button, .toggle-track, .toggle-thumb {
+            transition-property: background-color, border-color, color, fill, stroke, transform;
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+            transition-duration: 300ms;
+        }
+    </style>
+</head>
+
+<body class="bg-white text-gray-900 dark:bg-black dark:text-gray-100 antialiased selection:bg-blue-200 dark:selection:bg-blue-900">
+
+    <header class="fixed top-0 w-full z-40 border-b border-gray-200 bg-white/95 backdrop-blur-sm dark:bg-black/95 dark:border-gray-800 transition-colors">
+        <div class="max-w-3xl mx-auto px-6 h-16 flex items-center justify-between">
+            
+            <div class="flex items-center gap-3">
+                <button class="p-2 -ml-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-300 transition-colors" aria-label="Menu">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7"></path></svg>
+                </button>
+                <h1 class="text-xl font-bold tracking-tight text-gray-900 dark:text-white font-sans">
+                    Global<span class="text-newsBlue-light dark:text-newsBlue-dark">Daily</span>
+                </h1>
+            </div>
+            
+            <div class="flex items-center">
+                <button 
+                    id="theme-toggle" 
+                    class="group relative inline-flex h-8 w-16 items-center rounded-full bg-gray-200 dark:bg-gray-700 transition-colors focus:outline-none focus:ring-2 focus:ring-newsBlue-light dark:focus:ring-newsBlue-dark focus:ring-offset-2 dark:focus:ring-offset-black"
+                    aria-label="Toggle Dark Mode"
+                >
+                    <span class="absolute left-2 text-xs text-yellow-600 dark:text-gray-500 z-10">☀</span>
+                    <span class="absolute right-2 text-xs text-gray-400 dark:text-blue-200 z-10">☾</span>
+
+                    <span 
+                        class="toggle-thumb inline-block h-6 w-6 transform rounded-full bg-white dark:bg-gray-800 shadow ring-0 transition duration-300 ease-in-out translate-x-1 dark:translate-x-9 flex items-center justify-center z-20"
+                    >
+                        <svg class="w-4 h-4 text-yellow-500 dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+                        <svg class="w-3 h-3 text-blue-300 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+                    </span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="pt-24 pb-20 px-6 max-w-2xl mx-auto">
+        <article>
+            <span class="uppercase text-xs font-bold tracking-wider text-newsBlue-light dark:text-newsBlue-dark mb-2 block">Technology</span>
+            
+            <h1 class="text-3xl sm:text-4xl font-bold leading-tight mb-4 font-sans text-gray-900 dark:text-white">
+                 The Future of Interface Design: Prioritizing Dark Mode and Accessibility
+            </h1>
+
+            <div class="flex items-center gap-4 mb-8 text-sm text-gray-500 dark:text-gray-400 font-sans border-b border-gray-100 dark:border-gray-800 pb-6">
+                <div class="flex items-center gap-2">
+                    <div class="w-8 h-8 rounded-full bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-200 flex items-center justify-center font-bold text-xs">JS</div>
+                    <span class="font-medium text-gray-900 dark:text-gray-200">Jane Smith</span>
+                </div>
+                <span>•</span>
+                <time datetime="2023-10-27">Oct 27, 2023</time>
+                <span>•</span>
+                <span>5 min read</span>
+            </div>
+
+            <div class="space-y-6 font-serif text-lg leading-relaxed text-gray-800 dark:text-gray-300">
+                <p class="first-letter:text-5xl first-letter:font-bold first-letter:text-gray-900 first-letter:mr-3 first-letter:float-left dark:first-letter:text-white">
+                    With the rise of OLED screens and increased screen time, users are increasingly demanding interfaces that are easier on the eyes. Dark mode is no longer just a trend; it is a fundamental expectation for mobile applications.
+                </p>
+
+                <p>
+                    Designing for dark mode requires more than just inverting colors. It requires a nuanced understanding of <a href="#" class="font-medium underline decoration-2 underline-offset-2 text-newsBlue-light dark:text-newsBlue-dark hover:opacity-80 transition-opacity">contrast ratios</a> and visual hierarchy. True black backgrounds can save battery life on modern devices, but they present unique challenges for typography.
+                </p>
+
+                <h2 class="text-2xl font-bold font-sans mt-8 mb-2 text-gray-900 dark:text-white">Why Contrast Matters</h2>
+
+                <p>
+                    When using a pure black background (Hex #000000), pure white text can sometimes cause visual "vibration" or halation. To mitigate this, we use a slightly off-white color (like gray-100) for the main body text to ensure comfort.
+                </p>
+
+                <blockquote class="pl-4 border-l-4 border-newsBlue-light dark:border-newsBlue-dark italic text-gray-600 dark:text-gray-400 my-8">
+                    "Accessibility is not a constraint, but a design catalyst. It forces clarity and simplicity."
+                </blockquote>
+
+                <p>
+                    Furthermore, standard dark blues often disappear against black backgrounds. In this interface, we dynamically adjust our accent blue from a deeper shade in light mode to a lighter, more vibrant blue in dark mode to ensure it meets <strong class="font-bold text-gray-900 dark:text-white">WCAG AA standards</strong>.
+                </p>
+            </div>
+        </article>
+        
+        <hr class="my-12 border-gray-200 dark:border-gray-800">
+        
+        <div class="text-center">
+            <button class="px-6 py-3 rounded-full bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-white font-sans font-medium text-sm hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors">
+                Load more articles
+            </button>
+        </div>
+    </main>
+
+    <script>
+        const toggleBtn = document.getElementById('theme-toggle');
+        const htmlElement = document.documentElement;
+
+        toggleBtn.addEventListener('click', () => {
+            htmlElement.classList.toggle('dark');
+        });
+    </script>
+</body>
+</html>
