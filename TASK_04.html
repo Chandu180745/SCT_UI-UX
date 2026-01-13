@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FIT_GO | Prototype</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;600;800;900&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        nothing: {
+                            black: '#000000',
+                            white: '#FFFFFF',
+                            red: '#D71921', // Nothing OS Red
+                            gray: '#262626',
+                            darkgray: '#111111',
+                        }
+                    },
+                    fontFamily: {
+                        raleway: ['"Raleway"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #050505;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* Fixed to viewport height to prevent body scroll */
+            margin: 0;
+            overflow: hidden; /* Prevent outer scrolling */
+            font-family: 'Raleway', sans-serif;
+        }
+        
+        /* Custom Scrollbar hide */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-zinc-950">
+
+    <div class="relative w-full max-w-md h-[90vh] max-h-[800px] bg-nothing-black text-nothing-white border border-nothing-gray overflow-hidden shadow-2xl flex flex-col font-raleway tracking-wide rounded-sm">
+        
+        <main id="app-content" class="flex-1 relative overflow-y-auto no-scrollbar p-6 flex flex-col">
+            
+            <section id="screen-welcome" class="relative flex flex-col justify-between h-full py-6 fade-in overflow-hidden">
+                
+                <div class="absolute inset-0 z-0 pointer-events-none select-none overflow-hidden">
+                    <div class="absolute -top-10 -right-20 w-80 h-80 bg-nothing-red opacity-10 rotate-12"></div>
+                    <div class="absolute top-1/4 -left-16 w-48 h-64 bg-nothing-gray opacity-30 -rotate-6"></div>
+                    <div class="absolute top-1/2 right-8 w-24 h-24 border-2 border-white opacity-20 rotate-45"></div>
+                    <div class="absolute top-[45%] left-1/2 w-16 h-16 bg-nothing-red opacity-50 -translate-x-1/2 -translate-y-1/2 rotate-3"></div>
+                    <div class="absolute -bottom-24 -left-10 w-72 h-72 bg-nothing-darkgray opacity-80 rotate-12"></div>
+                     <div class="absolute bottom-20 left-20 w-4 h-4 bg-white opacity-60"></div>
+                </div>
+
+                <div class="space-y-4 mt-8 relative z-10">
+                    <h1 class="text-6xl font-black uppercase leading-none tracking-tighter drop-shadow-xl">
+                        Fit<span class="text-nothing-red">_</span>Go
+                    </h1>
+                    <div class="w-16 h-1 bg-nothing-red shadow-sm"></div>
+                </div>
+
+                <div class="space-y-6 relative z-10">
+                    <p class="text-xl uppercase font-semibold opacity-90 border-l-2 border-nothing-red pl-4 drop-shadow-md">
+                        Define Your Metrics_
+                    </p>
+                    
+                    <button onclick="navigateTo('screen-onboarding')" 
+                        class="group w-full bg-nothing-black/50 backdrop-blur-sm border border-dotted border-white/40 py-4 hover:bg-nothing-red hover:border-nothing-red hover:text-black transition-all duration-200 uppercase font-bold flex justify-between px-6 items-center">
+                        <span>Initialize</span>
+                        <span class="group-hover:translate-x-2 transition-transform">-></span>
+                    </button>
+                </div>
+            </section>
+
+            <section id="screen-onboarding" class="hidden h-full flex flex-col justify-center space-y-6">
+                <div class="border border-nothing-red p-1 inline-block w-max mb-2">
+                    <span class="bg-nothing-red text-black px-2 text-xs uppercase font-bold">System Check</span>
+                </div>
+                
+                <h2 class="text-3xl uppercase font-black leading-snug">
+                    Precision tracking for <br>
+                    <span class="text-nothing-red decoration-dotted underline">Imperfect</span> Humans.
+                </h2>
+                
+                <p class="text-lg font-medium opacity-60 leading-relaxed">
+                    FIT_GO strips away the noise. We focus on raw data, simple metrics, and brutal honesty. 
+                    <br><br>
+                    No cheerleaders. Just results.
+                </p>
+
+                <div class="pt-6">
+                    <button onclick="navigateTo('screen-profile')" 
+                        class="w-full bg-nothing-white text-black py-4 uppercase font-black hover:bg-nothing-gray hover:text-white transition-colors border border-transparent hover:border-white">
+                        Enter Data
+                    </button>
+                </div>
+            </section>
+
+            <section id="screen-profile" class="hidden h-full flex flex-col">
+                <div class="mb-4">
+                    <h2 class="text-2xl font-bold uppercase border-b border-dotted border-white/30 pb-2">User Profile_</h2>
+                </div>
+
+                <form id="profile-form" onsubmit="handleProfile(event)" class="flex-1 flex flex-col gap-4">
+                    
+                    <div class="space-y-1">
+                        <label class="text-[10px] font-bold text-nothing-red uppercase">Identifier</label>
+                        <input type="text" id="input-name" required placeholder="NAME" 
+                            class="w-full bg-transparent border-b border-white/50 py-2 focus:outline-none focus:border-nothing-red text-lg font-semibold placeholder-white/20 uppercase">
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="space-y-1">
+                            <label class="text-[10px] font-bold text-nothing-red uppercase">Age (Yrs)</label>
+                            <input type="number" id="input-age" required placeholder="00" 
+                                class="w-full bg-transparent border-b border-white/50 py-2 focus:outline-none focus:border-nothing-red text-lg font-semibold placeholder-white/20">
+                        </div>
+                        <div class="space-y-1">
+                            <label class="text-[10px] font-bold text-nothing-red uppercase">Gender</label>
+                            <select id="input-gender" class="w-full bg-nothing-black border-b border-white/50 py-2 focus:outline-none focus:border-nothing-red text-lg font-semibold text-white appearance-none rounded-none">
+                                <option>MALE</option>
+                                <option>FEMALE</option>
+                                <option>OTHER</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="space-y-1">
+                            <label class="text-[10px] font-bold text-nothing-red uppercase">Height (CM)</label>
+                            <input type="number" id="input-height" required placeholder="000" 
+                                class="w-full bg-transparent border-b border-white/50 py-2 focus:outline-none focus:border-nothing-red text-lg font-semibold placeholder-white/20">
+                        </div>
+                        <div class="space-y-1">
+                            <label class="text-[10px] font-bold text-nothing-red uppercase">Weight (KG)</label>
+                            <input type="number" id="input-weight" required placeholder="00.0" 
+                                class="w-full bg-transparent border-b border-white/50 py-2 focus:outline-none focus:border-nothing-red text-lg font-semibold placeholder-white/20">
+                        </div>
+                    </div>
+
+                    <div id="bmi-display" class="hidden mt-2 border border-dotted border-white p-3 text-center">
+                        <p class="text-[10px] font-bold uppercase opacity-50">Calculated BMI</p>
+                        <div id="bmi-value" class="text-4xl text-nothing-red font-black my-1">--</div>
+                        <div id="bmi-category" class="uppercase text-xs font-bold">--</div>
+                    </div>
+
+                    <div class="mt-auto pt-2">
+                        <button type="submit" 
+                            class="w-full border-2 border-nothing-red text-nothing-red py-3 uppercase font-bold hover:bg-nothing-red hover:text-black transition-colors text-sm">
+                            Next: Set Goals ->
+                        </button>
+                    </div>
+                </form>
+            </section>
+
+            <section id="screen-goals" class="hidden h-full flex flex-col">
+                <div class="mb-4">
+                    <span class="text-[10px] font-bold text-nothing-red uppercase block mb-1">Target Protocol</span>
+                    <h2 class="text-2xl font-bold uppercase">Select Mission_</h2>
+                </div>
+
+                <div class="flex-1 space-y-3">
+                    <label class="cursor-pointer group block">
+                        <input type="radio" name="goal" value="Lose Weight" class="peer hidden">
+                        <div class="border border-white/30 p-4 peer-checked:bg-white peer-checked:text-black peer-checked:border-white transition-all group-hover:border-nothing-red">
+                            <div class="flex justify-between items-center">
+                                <span class="text-lg font-bold uppercase">Lose Weight</span>
+                                <div class="w-3 h-3 border border-current rounded-full peer-checked:bg-black"></div>
+                            </div>
+                            <p class="text-[10px] font-medium opacity-60 mt-1 peer-checked:opacity-100">Caloric deficit // Cardio focus</p>
+                        </div>
+                    </label>
+
+                    <label class="cursor-pointer group block">
+                        <input type="radio" name="goal" value="Build Muscle" class="peer hidden">
+                        <div class="border border-white/30 p-4 peer-checked:bg-white peer-checked:text-black peer-checked:border-white transition-all group-hover:border-nothing-red">
+                            <div class="flex justify-between items-center">
+                                <span class="text-lg font-bold uppercase">Build Muscle</span>
+                                <div class="w-3 h-3 border border-current rounded-full peer-checked:bg-black"></div>
+                            </div>
+                            <p class="text-[10px] font-medium opacity-60 mt-1 peer-checked:opacity-100">Hypertrophy // Strength focus</p>
+                        </div>
+                    </label>
+
+                    <label class="cursor-pointer group block">
+                        <input type="radio" name="goal" value="Endurance" class="peer hidden">
+                        <div class="border border-white/30 p-4 peer-checked:bg-white peer-checked:text-black peer-checked:border-white transition-all group-hover:border-nothing-red">
+                            <div class="flex justify-between items-center">
+                                <span class="text-lg font-bold uppercase">Endurance</span>
+                                <div class="w-3 h-3 border border-current rounded-full peer-checked:bg-black"></div>
+                            </div>
+                            <p class="text-[10px] font-medium opacity-60 mt-1 peer-checked:opacity-100">Stamina // VO2 Max focus</p>
+                        </div>
+                    </label>
+                </div>
+
+                <button onclick="finishSetup()" 
+                    class="w-full bg-nothing-red text-black py-4 uppercase font-black hover:bg-white transition-colors mt-4">
+                    Finalize Setup
+                </button>
+            </section>
+
+            <section id="screen-dashboard" class="hidden h-full flex flex-col justify-center items-center text-center">
+                <div class="animate-pulse mb-6">
+                    <div class="w-20 h-20 border-4 border-dotted border-nothing-red rounded-full flex items-center justify-center mx-auto">
+                        <span class="text-2xl font-black">GO</span>
+                    </div>
+                </div>
+                
+                <h2 class="text-2xl font-bold uppercase mb-2">Setup Complete</h2>
+                <p class="opacity-60 text-sm font-medium max-w-[200px]">Profile calibrated.</p>
+                <div class="mt-8 border-t border-b border-dotted border-white/20 py-4 w-full">
+                     <p class="text-xs font-bold uppercase text-nothing-red">Active Protocol</p>
+                     <p id="final-goal" class="text-xl font-black mt-1">--</p>
+                </div>
+                
+                <button onclick="location.reload()" class="mt-12 text-xs font-bold uppercase underline hover:text-nothing-red">
+                    Restart Prototype
+                </button>
+            </section>
+
+        </main>
+
+        <div class="p-4 flex justify-between items-end border-t border-nothing-gray relative z-20 bg-nothing-black">
+            <div class="flex gap-1">
+                <div class="w-1 h-1 bg-white rounded-full"></div>
+                <div class="w-1 h-1 bg-white rounded-full opacity-50"></div>
+                <div class="w-1 h-1 bg-white rounded-full opacity-25"></div>
+            </div>
+            <div class="text-[10px] uppercase font-bold tracking-widest opacity-40">FIT_GO v1.1</div>
+        </div>
+    </div>
+
+    <script>
+        // Store user data
+        let userData = {
+            name: '',
+            age: '',
+            height: '',
+            weight: '',
+            gender: '',
+            bmi: 0,
+            bmiCategory: '',
+            goal: ''
+        };
+
+        // Screen Navigation
+        function navigateTo(screenId) {
+            // Hide all sections
+            const sections = document.querySelectorAll('main > section');
+            sections.forEach(sec => sec.classList.add('hidden'));
+
+            // Show target section
+            document.getElementById(screenId).classList.remove('hidden');
+        }
+
+        // Profile Calculation Logic
+        function handleProfile(e) {
+            e.preventDefault();
+            
+            // Get values
+            userData.name = document.getElementById('input-name').value;
+            userData.age = document.getElementById('input-age').value;
+            userData.height = parseFloat(document.getElementById('input-height').value);
+            userData.weight = parseFloat(document.getElementById('input-weight').value);
+            userData.gender = document.getElementById('input-gender').value;
+
+            // Calculate BMI
+            // Formula: kg / (m^2)
+            const heightInMeters = userData.height / 100;
+            const bmi = userData.weight / (heightInMeters * heightInMeters);
+            userData.bmi = bmi.toFixed(1);
+
+            // Categorize
+            let category = '';
+            if (bmi < 18.5) category = "Underweight";
+            else if (bmi >= 18.5 && bmi < 24.9) category = "Normal Weight";
+            else if (bmi >= 25 && bmi < 29.9) category = "Overweight";
+            else category = "Obese";
+
+            userData.bmiCategory = category;
+
+            // Update UI with calculation
+            const bmiDisplay = document.getElementById('bmi-display');
+            const bmiValue = document.getElementById('bmi-value');
+            const bmiCat = document.getElementById('bmi-category');
+
+            bmiDisplay.classList.remove('hidden');
+            bmiValue.innerText = userData.bmi;
+            bmiCat.innerText = category;
+            
+            // Visual check before moving (small delay for UX)
+            setTimeout(() => {
+                navigateTo('screen-goals');
+            }, 1000); // 1 second delay to see the result
+        }
+
+        // Finalize
+        function finishSetup() {
+            // Get selected goal
+            const selectedGoal = document.querySelector('input[name="goal"]:checked');
+            
+            if (!selectedGoal) {
+                alert("PLEASE SELECT A MISSION");
+                return;
+            }
+
+            userData.goal = selectedGoal.value;
+            document.getElementById('final-goal').innerText = userData.goal;
+
+            navigateTo('screen-dashboard');
+        }
+    </script>
+</body>
+</html>
